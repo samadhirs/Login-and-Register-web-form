@@ -1,3 +1,4 @@
+<!--corrected -->
 <?php
 include 'connect.php';
 
@@ -7,7 +8,7 @@ if(isset($_POST['SignUp']))
     $lastName=$_POST['lName'];
     $email=$_POST['email'];
     $password=$_POST['password'];
-    $password=Sam($password);
+    $password=md5($password);
 
     $checkEmail="SELECT * From users where email='$email'";
     $result=$conn->query($checkEmail);
@@ -28,8 +29,8 @@ if(isset($_POST['SignUp']))
 
 if(isset($_POST['signIn'])){
     $email=$_POST['email'];
-    $password=$_POST['password'];
-    $password=Sam($password);
+    //$password=$_POST['password'];
+    $password=md5($_POST['password']);
 
     $sql="SELECT * FROM users WHERE email='$email' and password='$password'";
 
